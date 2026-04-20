@@ -171,7 +171,29 @@ app.post("/agendar", async (req, res) => {
     res.status(500).json({ error: "Erro ao agendar", detalhes: err.message });
   }
 });
-
+app.post("/chat", async (req, res) => {
+  try {
+    const { messages, system } = req.body;
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": process.env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+      },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        system,
+        messages,
+      }),
+    });
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: "Erro no chat", detalhes: err.message });
+  }
+});
 app.get("/", (req, res) => res.json({ status: "3N API online" }));
 
 const PORT = process.env.PORT || 3001;
