@@ -176,4 +176,3 @@ app.get("/", (req, res) => res.json({ status: "3N API online" }));
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`3N API rodando na porta ${PORT}`));
-
