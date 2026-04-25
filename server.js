@@ -123,7 +123,6 @@ app.post("/agendar", async (req, res) => {
         description: `Cliente: ${nome}\nCondominio: ${condominio || "N/A"}\nCargo: ${cargo || "N/A"}\nTelefone: ${telefone || "N/A"}\nEmail: ${email}\nCidade: ${cidade || "N/A"}\nInteresse: ${produto || "Automacao predial geral"}`,
         start: { dateTime: inicio, timeZone: "America/Sao_Paulo" },
         end: { dateTime: fim, timeZone: "America/Sao_Paulo" },
-        attendees: [{ email }],
         reminders: {
           useDefault: false,
           overrides: [
